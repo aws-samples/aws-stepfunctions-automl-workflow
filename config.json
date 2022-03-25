@@ -1,0 +1,163 @@
+{
+    "Roles": {
+        "TrainStateMachine": {
+            "Policies": {
+                "AWS": [
+                    "AmazonSageMakerFullAccess"
+                ],
+                "Custom": {
+                    "ECRListingPolicy": {
+                        "Actions": [
+                            "ecr:GetAuthorizationToken",
+                            "ecr:BatchCheckLayerAvailability",
+                            "ecr:GetDownloadUrlForLayer",
+                            "ecr:BatchGetImage"
+                        ],
+                        "Resources": [
+                            "*"
+                        ]
+                    },
+                    "SynchronousExecutionPolicy": {
+                        "Actions": [
+                            "events:PutTargets",
+                            "events:PutRule",
+                            "events:DescribeRule"
+                        ],
+                        "Resources": [
+                            "*"
+                        ]
+                    }
+                }
+            },
+            "Principals": [
+                "states.amazonaws.com"
+            ]
+        },
+        "SageMakerNotebook": {
+            "Policies": {
+                "AWS": [
+                    "AmazonSageMakerFullAccess",
+                    "AWSStepFunctionsFullAccess",
+                    "AmazonS3FullAccess",
+                    "AWSCodeCommitFullAccess"
+                ]
+            },
+            "Principals": [
+                "sagemaker.amazonaws.com",
+                "states.amazonaws.com"
+            ]
+        },
+        "DeployStateMachine": {
+            "Policies": {
+                "AWS": [
+                    "AmazonSageMakerFullAccess",
+                    "AmazonS3FullAccess"
+                ],
+                "Custom": {
+                    "ECRListingPolicy": {
+                        "Actions": [
+                            "ecr:GetAuthorizationToken",
+                            "ecr:BatchCheckLayerAvailability",
+                            "ecr:GetDownloadUrlForLayer",
+                            "ecr:BatchGetImage"
+                        ],
+                        "Resources": [
+                            "*"
+                        ]
+                    },
+                    "SynchronousExecutionPolicy": {
+                        "Actions": [
+                            "events:PutTargets",
+                            "events:PutRule",
+                            "events:DescribeRule"
+                        ],
+                        "Resources": [
+                            "*"
+                        ]
+                    }
+                }
+            },
+            "Principals": [
+                "states.amazonaws.com",
+                "sagemaker.amazonaws.com"
+            ]
+        },
+        "Train": {
+            "Policies": {
+                "AWS": [
+                    "AmazonSageMakerFullAccess",
+                    "AmazonS3FullAccess"
+                ]
+            },
+            "Principals": [
+                "sagemaker.amazonaws.com"
+            ]
+        },
+        "BatchTransform": {
+            "Policies": {
+                "AWS": [
+                    "AmazonSageMakerFullAccess",
+                    "AmazonS3FullAccess"
+                ]
+            },
+            "Principals": [
+                "sagemaker.amazonaws.com"
+            ]
+        },
+        "MainStateMachine": {
+            "Policies": {
+                "AWS": [
+                    "AmazonSageMakerFullAccess"
+                ],
+                "Custom": {
+                    "ECRListingPolicy": {
+                        "Actions": [
+                            "ecr:GetAuthorizationToken",
+                            "ecr:BatchCheckLayerAvailability",
+                            "ecr:GetDownloadUrlForLayer",
+                            "ecr:BatchGetImage"
+                        ],
+                        "Resources": [
+                            "*"
+                        ]
+                    },
+                    "SynchronousExecutionPolicy": {
+                        "Actions": [
+                            "events:PutTargets",
+                            "events:PutRule",
+                            "events:DescribeRule"
+                        ],
+                        "Resources": [
+                            "*"
+                        ]
+                    }
+                }
+            },
+            "Principals": [
+                "states.amazonaws.com"
+            ]
+        },
+        "EndpointStatusLambda": {
+            "Policies": {
+                "AWS": [
+                    "AmazonSageMakerFullAccess",
+                    "service-role/AWSLambdaBasicExecutionRole"
+                ]
+            },
+            "Principals": [
+                "lambda.amazonaws.com"
+            ]
+        },        
+        "ModelValidationLambda": {
+            "Policies": {
+                "AWS": [
+                    "AmazonS3FullAccess",
+                    "service-role/AWSLambdaBasicExecutionRole"
+                ]
+            },
+            "Principals": [
+                "lambda.amazonaws.com"
+            ]
+        }
+    }
+}

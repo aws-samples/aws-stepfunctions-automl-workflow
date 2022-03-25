@@ -1,0 +1,27 @@
+{
+    "Parameters": {
+      "Flow": {
+        "Train": true,
+        "Evaluate": true,
+        "Deploy": true
+      },
+      "Train": {
+        "TrainDataPath": "s3://stepfunctions-mlops/data/bank/train.csv",
+        "TestDataPath": "s3://stepfunctions-mlops/data/bank/test.csv",
+        "TrainingOutput": "s3://stepfunctions-mlops/output/training/",
+        "InstanceCount": 1,
+        "InstanceType": "ml.m5.2xlarge",
+        "FitArgs": "\"{\\\"presets\\\": \\\"medium_quality_faster_train\\\"}\"",
+        "InitArgs": "\"{\\\"label\\\": \\\"y\\\", \\\"problem_type\\\": \\\"binary\\\"}\""
+      },
+      "Evaluation": {
+        "Threshold": "0.6",
+        "Metric": "accuracy"
+      },
+      "Deploy": {
+        "InstanceCount": 1,
+        "InstanceType": "ml.m5.2xlarge",
+        "Mode": "endpoint"
+      }
+    }
+  }

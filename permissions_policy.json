@@ -1,0 +1,85 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "iam:PassRole",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": [
+                        "lambda.amazonaws.com",
+                        "states.amazonaws.com"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction",
+                "lambda:GetLayerVersion"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "lambda:PublishLayerVersion",
+            "Resource": "arn:aws:lambda:*:039573824519:layer:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:InvokeFunction",
+                "lambda:GetLayerVersion",
+                "lambda:PublishLayerVersion"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:CreateFunction",
+                "iam:UpdateAssumeRolePolicy",
+                "iam:GetRole",
+                "states:DescribeStateMachine",
+                "states:CreateActivity",
+                "lambda:GetFunction",
+                "states:UpdateStateMachine",
+                "lambda:PublishLayerVersion",
+                "states:DeleteStateMachine",
+                "iam:CreateRole",
+                "iam:DeleteRole",
+                "iam:AttachRolePolicy",
+                "states:UntagResource",
+                "iam:PutRolePolicy",
+                "states:TagResource",
+                "s3:GetObject",
+                "iam:DetachRolePolicy",
+                "iam:DeleteRolePolicy",
+                "lambda:DeleteLayerVersion",
+                "states:DeleteActivity",
+                "lambda:DeleteFunction",
+                "lambda:PublishVersion",
+                "states:CreateStateMachine"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutBucketTagging",
+                "lambda:DeleteLayerVersion",
+                "s3:CreateBucket",
+                "lambda:DeleteFunction",
+                "lambda:PublishVersion"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "states:ListStateMachines",
+            "Resource": "*"
+        }
+    ]
+}

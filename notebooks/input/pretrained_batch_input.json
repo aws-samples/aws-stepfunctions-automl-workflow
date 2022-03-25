@@ -1,0 +1,19 @@
+{
+    "Parameters": {
+      "Flow": {
+        "Train": false,
+        "Evaluate": false,
+        "Deploy": true
+      },
+      "PretrainedModel": {
+        "Name": "32551d1b-a907-4bc3-aa2a-9f98be0d07c1"
+      },
+      "Deploy": {
+        "BatchInputDataPath": "s3://stepfunctions-mlops/data/bank/test_batch.csv",
+        "BatchOutputDataPath": "s3://stepfunctions-mlops/output/batch/",
+        "InstanceCount": 1,
+        "InstanceType": "ml.m5.2xlarge",
+        "Mode": "batch"
+      }
+    }
+  }

@@ -122,12 +122,5 @@ Clean-up all resources with `cdk destroy`.
  * `cdk diff`        compare deployed stack with current state
  * `cdk docs`        open CDK documentation
 
-## Open Tasks
-
-[ ] Refactor libraries and imports with transition to CDK@2.X
-
-[ ] Code documentation
-
-[ ] CDK bug doesn't allow for dynamic number of instances for endpoint deployment (currently hardcoded in the state machine)
 
 Enjoy!

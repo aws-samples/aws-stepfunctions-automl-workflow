@@ -1,19 +1,29 @@
 
 # Manage AutoML workflows with AWS StepFunctions and AutoGluon on Amazon SageMaker
 
-## Repo structure
-* `app.py` entrypoint
-* `stepfunctions_automl_workflow/lambdas/` AWS Lambda source scripts
-* `stepfunctions_automl_workflow/utils/` utils functions used across for stack generation
-* `stepfunctions_automl_workflow/stack.py` CDK stack definition
-* `notebooks/` Jupyter Notebooks to familiarise with the artifacts
-* `notebooks/input/` Input examples to be fed in State Machines
+In this repository, we present a deployement-ready AWS stack which uses [AWS Step Functions](https://aws.amazon.com/step-functions) to orchestrate AutoML workflows using [AutoGluon](https://auto.gluon.ai/stable/index.html#) on [Amazon SageMaker](https://aws.amazon.com/sagemaker/).
 
-## Requirements
+A complete description can be found in the corresponding [blog post]().
+
+Main State Machine      |  Training State Machine         | Deployment State Machine
+:-------------------------:|:-------------------------:|:-------------------------:
+![](img/main_machine.png)  |  ![](img/main_machine.png)|  ![](img/deploy_machine.png)|
+
+## Outline
+- [Installation](#install)
+- [Notebook Walktrough](#walktrough)
+- [Documentation](#doc)
+- [Repo structure](#structure)
+- [Clean-up](#cleanup)
+- [CDK Cheat-sheet](#cdk)
+
+## <a name="install"></a> Installation
+
+### Prerequisites
 - Node.js `16.13.1`
 - Python `3.7.10`
 
-## Instructions
+### Step-by-step setup
 
 1) Clone this repository to your cloud environment of choice (Cloud9, EC2 instance, local aws environemnt, ...)
 
@@ -38,11 +48,11 @@
 
 8) Deploy the stack with `cdk deploy -r {NEW_ROLE_ARN}`
 
-## Notebook Walkthrough (SUGGESTED)
+##  <a name="walkthrough"></a> Notebook Walkthrough (SUGGESTED)
 
 Once the stack is deployed, you can familiarize with the resources using the tutorial `notebooks/AutoML Walkthrough.ipynb`.
 
-## State Machines Input Documentation
+##  <a name="doc"></a>  State Machines Input Documentation
 
 Action flows defined using AWS Step Functions are called State Machine.
 Each machine has parameters that can be defined at runtime (i.e. execution-specific) which are specified through an input json object. Some exemples of input parameters are presented in `notebooks/input/`. Despite being meant to be used during the notebook tutorial, you can also copy/paste them directly into the AWS Console.
@@ -110,11 +120,20 @@ __Parameters__
     - __BatchInputDataPath__ *(string)* - (REQUIRED if `mode=batch`) S3 URI of dataset against which predictions are generated. Data must be store in `csv` format, without header and with same columns order of training dataset.
     - __BatchOutputDataPath__ *(string)* - (REQUIRED if `mode=batch`) S3 URI to where to store batch predictions.   
 
-## Clean-up
+##  <a name="structure"></a> Repo structure
+* `app.py` entrypoint
+* `stepfunctions_automl_workflow/lambdas/` AWS Lambda source scripts
+* `stepfunctions_automl_workflow/utils/` utils functions used across for stack generation
+* `stepfunctions_automl_workflow/stack.py` CDK stack definition
+* `notebooks/` Jupyter Notebooks to familiarise with the artifacts
+* `notebooks/input/` Input examples to be fed in State Machines
+
+
+##  <a name="cleanup"></a>  Clean-up
 WARNING: While you'll still be able to keep SageMaker artifacts, the AWS Step Functions State Machines will be deleted along with their execution history.
 Clean-up all resources with `cdk destroy`. 
 
-## Useful commands
+##  <a name="cdk"></a> CDK cheatsheet
 
  * `cdk ls`          list all stacks in the app
  * `cdk synth`       emits the synthesized CloudFormation template
@@ -123,4 +142,4 @@ Clean-up all resources with `cdk destroy`.
  * `cdk docs`        open CDK documentation
 
 
-Enjoy!
+## Enjoy!
